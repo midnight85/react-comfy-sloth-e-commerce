@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {Navbar, Sidebar, Footer} from "./components";
 import {
-  Home,
+  HomePage,
   AboutPage,
   ProductsPage,
   SingleProductPage,
@@ -15,24 +15,28 @@ import {
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <header className="header">
+        <Navbar />
+      </header>
       <Sidebar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path="products" element={<ProductsPage />} />
-        <Route path="products/:id" element={<SingleProductPage />} />
-        <Route path="cart" element={<CartPage />} />
-        <Route
-          path="checkout"
-          element={
-            <PrivateRoute>
-              <CheckoutPage />
-            </PrivateRoute>
-          }
-        />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
+      <main className="main">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="products" element={<ProductsPage />} />
+          <Route path="products/:id" element={<SingleProductPage />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route
+            path="checkout"
+            element={
+              <PrivateRoute>
+                <CheckoutPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </main>
       <Footer />
     </BrowserRouter>
   );
