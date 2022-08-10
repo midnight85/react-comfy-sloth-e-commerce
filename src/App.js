@@ -13,7 +13,29 @@ import {
 } from "./pages";
 
 function App() {
-  return <h1>Hello</h1>;
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <Sidebar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="products" element={<ProductsPage />} />
+        <Route path="products/:id" element={<SingleProductPage />} />
+        <Route path="cart" element={<CartPage />} />
+        <Route
+          path="checkout"
+          element={
+            <PrivateRoute>
+              <CheckoutPage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
 export default App;
