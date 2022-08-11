@@ -138,11 +138,10 @@ p {
 /*  global classes */
 #root {
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 .main {
-  flex: 1 1 auto;
 }
 
 /* section */
@@ -209,11 +208,4 @@ p {
   background: var(--clr-primary-5);
   margin-left: auto;
   margin-right: auto;
-}
-.page-100 {
-  min-height: calc(100vh - 10rem);
-  padding: 5rem 0;
-}
-.page {
-  min-height: calc(100vh - (20vh + 10rem));
 }

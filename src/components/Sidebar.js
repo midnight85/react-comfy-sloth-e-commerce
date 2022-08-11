@@ -42,6 +42,7 @@ const Sidebar = () => {
 };
 
 const SidebarContainer = styled.div`
+  position: absolute;
   text-align: center;
   .sidebar-header {
     display: flex;
