@@ -9,6 +9,7 @@ import Contact from "./Contact";
 import Loading from "./Loading";
 import Error from "./Error";
 import ProductImages from "./ProductImages";
+import ProductDescription from "./ProductDescription";
 import AddToCart from "./AddToCart";
 import Filters from "./Filters";
 import ProductList from "./ProductList";
@@ -29,6 +30,7 @@ export {
   Loading,
   Error,
   ProductImages,
+  ProductDescription,
   AddToCart,
   Filters,
   ProductList,

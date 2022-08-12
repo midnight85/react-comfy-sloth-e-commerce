@@ -1,15 +1,45 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { FaCheck } from 'react-icons/fa'
-import { useCartContext } from '../context/cart_context'
-import AmountButtons from './AmountButtons'
+import React, {useState} from "react";
+import styled from "styled-components";
+import {Link} from "react-router-dom";
+import {FaCheck} from "react-icons/fa";
+import {useCartContext} from "../context/cart_context";
+import AmountButtons from "./AmountButtons";
 
-const AddToCart = () => {
-  return <h4>addToCart </h4>
-}
+const AddToCart = ({product}) => {
+  const {id, stock, colors} = product;
+  const [amount, setAmount] = useState(1);
+  const [mainColor, setMainColor] = useState(colors[0]);
 
-const Wrapper = styled.section`
+  return (
+    <Wrapper>
+      <div className="colors">
+        <span>color:</span>
+        <div>
+          {colors.map((color, index) => (
+            <button
+              key={index}
+              style={{backgroundColor: color}}
+              className={`${
+                mainColor === color ? "color-btn active" : "color-btn"
+              }`}
+              onClick={() => setMainColor(color)}
+            >
+              {color === mainColor ? <FaCheck /> : null}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="btn-container">
+        <AmountButtons amount={amount} setAmount={setAmount} stock={stock} />
+        <Link to="/cart" className="btn">
+          Add to cart
+        </Link>
+      </div>
+    </Wrapper>
+  );
+};
+
+const Wrapper = styled.div`
   margin-top: 2rem;
   .colors {
     display: grid;
@@ -33,7 +63,7 @@ const Wrapper = styled.section`
     margin-right: 0.5rem;
     border: none;
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.8;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,6 +82,7 @@ const Wrapper = styled.section`
   .btn {
     margin-top: 1rem;
     width: 140px;
+    color: "#fff";
   }
-`
-export default AddToCart
+`;
+export default AddToCart;
