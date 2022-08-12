@@ -1,17 +1,40 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import heroBcg from '../assets/hero-bcg.jpeg'
-import heroBcg2 from '../assets/hero-bcg-2.jpeg'
+import React from "react";
+import styled from "styled-components";
+import {Link} from "react-router-dom";
+import heroBcg from "../assets/hero-bcg.jpeg";
+import heroBcg2 from "../assets/hero-bcg-2.jpeg";
 
 const Hero = () => {
-  return <h4>hero</h4>
-}
+  return (
+    <Wrapper className="section-center">
+      <article className="content">
+        <h1>
+          Design your <br />
+          comfort zone
+        </h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero eum
+          aperiam ipsam sunt voluptate, exercitationem praesentium iste
+          voluptatum aut rerum dolores omnis placeat, fugit atque ab quod ea,
+          itaque unde!
+        </p>
+        <Link to="/products" className="btn hero-btn">
+          shop now
+        </Link>
+      </article>
+      <article className="img-container">
+        <img src={heroBcg} alt="hero img" className="main-img" />
+        <img src={heroBcg2} alt="hero img2" className="accent-img" />
+      </article>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.section`
-  min-height: 60vh;
+  /* min-height: 60vh; */
   display: grid;
   place-items: center;
+  padding: 4rem 0;
   .img-container {
     display: none;
   }
@@ -58,7 +81,7 @@ const Wrapper = styled.section`
       border-radius: var(--radius);
     }
     .img-container::before {
-      content: '';
+      content: "";
       position: absolute;
       width: 10%;
       height: 80%;
@@ -68,6 +91,6 @@ const Wrapper = styled.section`
       border-radius: var(--radius);
     }
   }
-`
+`;
 
-export default Hero
+export default Hero;
