@@ -11,7 +11,7 @@ import {
 import styled from "styled-components";
 
 const ProductDescription = ({product}) => {
-  const {id, name, price, description, stock, stars, reviews, company, images} =
+  const {id, name, price, description, stock, stars, reviews, company} =
     product;
   return (
     <Wrapper className="content">

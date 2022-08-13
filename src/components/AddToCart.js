@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 import {FaCheck} from "react-icons/fa";
@@ -9,6 +9,45 @@ const AddToCart = ({product}) => {
   const {id, stock, colors} = product;
   const [amount, setAmount] = useState(1);
   const [mainColor, setMainColor] = useState(colors[0]);
+  const {cart, addToCart} = useCartContext();
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [noInStock, setNoInStock] = useState(false);
+
+  useEffect(() => {
+    if (cart.length) {
+      //if selected color item in cart
+      const cartItem = cart.filter((item) => item.id === id + mainColor);
+      if (cartItem) {
+        setSelectedItem(cartItem[0]);
+      }
+    }
+  }, [mainColor, cart]);
+  useEffect(() => {
+    // check amount and stock in selected color item
+    if (selectedItem) {
+      if (selectedItem.amount + amount < stock) {
+        setNoInStock(false);
+      } else {
+        setNoInStock(true);
+      }
+    } else {
+      setNoInStock(amount === stock);
+    }
+  }, [amount, mainColor, selectedItem]);
+  useEffect(() => {
+    // set amount 1 on change color or add to cart
+    setAmount(1);
+    if (selectedItem) {
+      // set amount 0 if out of stock selected color
+      if (stock === selectedItem.amount) {
+        setAmount(0);
+      }
+    }
+  }, [selectedItem, mainColor, cart]);
+
+  // const checkAmount = () => {
+  //   if (selectedItem) setAmount(stock - selectedItem.amount);
+  // };
 
   return (
     <Wrapper>
@@ -30,10 +69,21 @@ const AddToCart = ({product}) => {
         </div>
       </div>
       <div className="btn-container">
-        <AmountButtons amount={amount} setAmount={setAmount} stock={stock} />
-        <Link to="/cart" className="btn">
+        <AmountButtons
+          amount={amount}
+          setAmount={setAmount}
+          stock={stock}
+          noInStock={noInStock}
+        />
+        <button
+          disabled={!amount}
+          className="btn"
+          onClick={() => {
+            addToCart(id, product, mainColor, amount);
+          }}
+        >
           Add to cart
-        </Link>
+        </button>
       </div>
     </Wrapper>
   );
@@ -83,6 +133,12 @@ const Wrapper = styled.div`
     margin-top: 1rem;
     width: 140px;
     color: "#fff";
+    &:disabled {
+      opacity: 0.5;
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
   }
 `;
 export default AddToCart;

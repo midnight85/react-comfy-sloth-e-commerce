@@ -10,7 +10,9 @@ import {Auth0Provider} from "@auth0/auth0-react";
 
 ReactDOM.render(
   <ProductsProvider>
-    <App />
+    <CartProvider>
+      <App />
+    </CartProvider>
   </ProductsProvider>,
 
   document.getElementById("root")

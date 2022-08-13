@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import {FaPlus, FaMinus} from "react-icons/fa";
 
-const AmountButtons = ({amount, setAmount, stock}) => {
+const AmountButtons = ({amount, setAmount, noInStock}) => {
   return (
     <Wrapper className="amount-btns">
       <button
         type="button"
         className="amount-btn"
-        disabled={amount === 1}
+        disabled={amount === 1 || amount === 0}
         onClick={() => setAmount((prev) => prev - 1)}
       >
         <FaMinus />
@@ -17,7 +17,7 @@ const AmountButtons = ({amount, setAmount, stock}) => {
       <button
         type="button"
         className="amount-btn"
-        disabled={amount === stock}
+        disabled={noInStock}
         onClick={() => setAmount((prev) => prev + 1)}
       >
         <FaPlus />
