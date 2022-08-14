@@ -34,10 +34,9 @@ export const CartProvider = ({children}) => {
   const clearCart = () => {
     dispatch({type: CLEAR_CART});
   };
+
   useEffect(() => {
     dispatch({type: COUNT_CART_TOTALS});
-  }, [state.cart]);
-  useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]);
   const value = {...state, addToCart, removeItem, toggleAmount, clearCart};

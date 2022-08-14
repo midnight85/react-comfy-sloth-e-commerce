@@ -70,19 +70,20 @@ const Wrapper = styled.article`
     line-height: 1.25;
   }
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-columns: 3fr minmax(30px, 1fr) minmax(30px, 1fr);
   grid-template-rows: 75px;
-  gap: 6px;
+  gap: 5px;
   justify-items: center;
   margin-bottom: 3rem;
   align-items: center;
   .title {
     grid-template-rows: 75px;
     display: grid;
-    grid-template-columns: 75px 1fr;
+    grid-template-columns: 75px minmax(137px, 1fr);
     align-items: center;
     text-align: left;
-    gap: 10px;
+    justify-self: stretch;
+    gap: 5px;
   }
   img {
     width: 100%;
@@ -118,7 +119,7 @@ const Wrapper = styled.article`
     color: var(--clr-primary-5);
   }
   .amount-btns {
-    width: 50px;
+    width: 30px;
     display: flex;
     flex-direction: column-reverse;
     button {
