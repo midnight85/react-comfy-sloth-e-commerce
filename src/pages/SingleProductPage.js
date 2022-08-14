@@ -11,7 +11,6 @@ import {
 } from "../components";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import {GiWrappedHeart} from "react-icons/gi";
 
 const SingleProductPage = () => {
   const {id} = useParams();
@@ -23,7 +22,7 @@ const SingleProductPage = () => {
     fetchSingleProduct,
   } = useProductsContext();
   useEffect(() => {
-    // fetchSingleProduct(`${url}${id}`);
+    fetchSingleProduct(`${url}${id}`);
   }, []);
 
   useEffect(() => {

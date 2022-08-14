@@ -9,7 +9,9 @@ import {
 } from "../actions";
 
 const initialState = {
-  cart: [],
+  cart: localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [],
   totalItems: 0,
   totalAmount: 0,
   shippingFee: 499,
@@ -23,7 +25,22 @@ export const CartProvider = ({children}) => {
   const addToCart = (id, product, color, amount) => {
     dispatch({type: ADD_TO_CART, payload: {id, product, color, amount}});
   };
-  const value = {...state, addToCart};
+  const removeItem = (id) => {
+    dispatch({type: REMOVE_CART_ITEM, payload: id});
+  };
+  const toggleAmount = (id, value) => {
+    dispatch({type: TOGGLE_CART_ITEM_AMOUNT, payload: {id, value}});
+  };
+  const clearCart = () => {
+    dispatch({type: CLEAR_CART});
+  };
+  useEffect(() => {
+    dispatch({type: COUNT_CART_TOTALS});
+  }, [state.cart]);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state.cart));
+  }, [state.cart]);
+  const value = {...state, addToCart, removeItem, toggleAmount, clearCart};
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 // make sure use

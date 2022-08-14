@@ -13,6 +13,12 @@ const AddToCart = ({product}) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [noInStock, setNoInStock] = useState(false);
 
+  const increaseAmount = () => {
+    setAmount((prev) => prev + 1);
+  };
+  const decreaseAmount = () => {
+    setAmount((prev) => prev - 1);
+  };
   useEffect(() => {
     if (cart.length) {
       //if selected color item in cart
@@ -71,8 +77,8 @@ const AddToCart = ({product}) => {
       <div className="btn-container">
         <AmountButtons
           amount={amount}
-          setAmount={setAmount}
-          stock={stock}
+          increaseAmount={increaseAmount}
+          decreaseAmount={decreaseAmount}
           noInStock={noInStock}
         />
         <button
