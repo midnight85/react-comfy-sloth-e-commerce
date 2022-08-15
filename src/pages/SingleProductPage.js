@@ -62,6 +62,7 @@ const SingleProductPage = () => {
 const Wrapper = styled.div`
   .product-center {
     display: grid;
+    grid-template-columns: minmax(288px, 1fr);
     gap: 4rem;
     margin-top: 2rem;
   }
