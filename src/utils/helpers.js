@@ -6,4 +6,9 @@ export const formatPrice = (number) => {
   return newNumber;
 };
 
-export const getUniqueValues = () => {};
+export const getUniqueValues = (data, str, array = false) => {
+  if (array) {
+    return ["all", ...new Set(data.map((item) => item[str]).flat())];
+  }
+  return ["all", ...new Set(data.map((item) => item[str]))];
+};
