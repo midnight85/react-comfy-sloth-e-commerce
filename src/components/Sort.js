@@ -60,7 +60,6 @@ const Wrapper = styled.section`
   }
 
   display: grid;
-  /* grid-template-columns: auto auto 1fr auto; */
   grid-template-areas: "btn-cont ptext hr select";
   align-items: center;
   margin-bottom: 2rem;
@@ -127,6 +126,7 @@ const Wrapper = styled.section`
   }
   form {
     display: flex;
+    gap: 5px;
     justify-content: flex-end;
     align-items: center;
   }

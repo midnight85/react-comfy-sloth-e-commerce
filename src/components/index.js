@@ -18,7 +18,9 @@ import Stars from "./Stars";
 import CartContent from "./CartContent";
 import PageHero from "./PageHero";
 import StripeCheckout from "./StripeCheckout";
+import Loader from "./Loader";
 export {
+  Loader,
   FeaturedProducts,
   Navbar,
   CartButtons,
