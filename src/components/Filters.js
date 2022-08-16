@@ -28,7 +28,7 @@ const Filters = () => {
     <Wrapper>
       <div className="content">
         <form onSubmit={(e) => e.preventDefault()}>
-          <div className="form-control">
+          <div className="form-control" data-filter-search>
             <input
               type="text"
               name="searchQuery"
@@ -38,7 +38,7 @@ const Filters = () => {
               onChange={updateFilters}
             />
           </div>
-          <div className="form-control">
+          <div className="form-control" data-filter-category>
             <h5>Category</h5>
             <div>
               {categories.map((item) => (
@@ -58,7 +58,7 @@ const Filters = () => {
               ))}
             </div>
           </div>
-          <div className="form-control">
+          <div className="form-control" data-filter-company>
             <h5>company</h5>
             <select name="company" value={company} onChange={updateFilters}>
               {companies.map((item) => (
@@ -68,7 +68,7 @@ const Filters = () => {
               ))}
             </select>
           </div>
-          <div className="form-control">
+          <div className="form-control" data-filter-colors>
             <h5>colors</h5>
             <div className="colors">
               {colors.map((item) => (
@@ -89,7 +89,7 @@ const Filters = () => {
               ))}
             </div>
           </div>
-          <div className="form-control">
+          <div className="form-control" data-filter-price>
             <h5>price</h5>
             <p className="price">{formatPrice(price)}</p>
             <input
@@ -101,7 +101,7 @@ const Filters = () => {
               value={price}
             />
           </div>
-          <div className="form-control shipping">
+          <div className="form-control shipping" data-filter-shipping>
             <label htmlFor="shipping">free shipping</label>
             <input
               type="checkbox"
@@ -121,6 +121,48 @@ const Filters = () => {
 };
 
 const Wrapper = styled.section`
+  [data-filter-search] {
+    grid-area: search;
+  }
+  [data-filter-category] {
+    grid-area: category;
+  }
+  [data-filter-company] {
+    grid-area: company;
+  }
+  [data-filter-colors] {
+    grid-area: colors;
+  }
+  [data-filter-price] {
+    grid-area: price;
+  }
+  [data-filter-shipping] {
+    grid-area: shipping;
+  }
+
+  @media (max-width: 767px) {
+    form {
+      display: grid;
+      grid-template-areas:
+        "search search"
+        "category company"
+        "category colors"
+        "category price"
+        "category shipping";
+    }
+  }
+  @media (max-width: 479.98px) {
+    form {
+      grid-template-areas:
+        "search"
+        "category"
+        "company"
+        "colors"
+        "price"
+        "shipping";
+    }
+  }
+
   .form-control {
     margin-bottom: 1.25rem;
     h5 {
@@ -224,6 +266,7 @@ const Wrapper = styled.section`
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius);
   }
+
   @media (min-width: 768px) {
     .content {
       position: sticky;

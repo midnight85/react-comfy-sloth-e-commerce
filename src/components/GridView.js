@@ -24,7 +24,7 @@ const Wrapper = styled.section`
     gap: 2rem 1.5rem;
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 479.98px) {
     .products-container {
       grid-template-columns: repeat(2, 1fr);
     }

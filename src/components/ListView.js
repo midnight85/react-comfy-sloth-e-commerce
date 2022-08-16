@@ -28,7 +28,18 @@ const ListView = ({filteredProducts}) => {
 const Wrapper = styled.section`
   display: grid;
   row-gap: 3rem;
-
+  article {
+    display: grid;
+    @media (min-width: 576px) {
+      grid-template-columns: 1fr 1.5fr;
+      gap: 10px;
+    }
+    @media (min-width: 992px) {
+      grid-template-columns: minmax(300px, 1fr) 2fr;
+      column-gap: 2rem;
+      align-items: center;
+    }
+  }
   img {
     width: 100%;
     display: block;
@@ -52,14 +63,6 @@ const Wrapper = styled.section`
   .btn {
     font-size: 0.5rem;
     padding: 0.25rem 0.5rem;
-  }
-  @media (min-width: 992px) {
-    article {
-      display: grid;
-      grid-template-columns: minmax(300px, 1fr) 2fr;
-      column-gap: 2rem;
-      align-items: center;
-    }
   }
 `;
 
