@@ -3,6 +3,8 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {Navbar, Sidebar, Footer} from "./components";
 import {
   HomePage,
+  LoginPage,
+  RegisterPage,
   AboutPage,
   ProductsPage,
   SingleProductPage,
@@ -22,6 +24,9 @@ function App() {
       <main className="main">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
           <Route path="about" element={<AboutPage />} />
           <Route path="products" element={<ProductsPage />} />
           <Route path="products/:id" element={<SingleProductPage />} />

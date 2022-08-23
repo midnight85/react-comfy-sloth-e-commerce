@@ -18,10 +18,10 @@ const CartButtons = () => {
           <span className="cart-value">{totalItems}</span>
         </span>
       </Link>
-      <button type="button" className="auth-btn">
+      <Link to="/login" onClick={() => closeSidebar()} className="auth-btn">
         Log in
         <FaUserPlus />
-      </button>
+      </Link>
     </Wrapper>
   );
 };
