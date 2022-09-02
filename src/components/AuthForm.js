@@ -1,15 +1,31 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
+import {useUserContext} from "../context/user_context";
 import FormInput from "./UI/FormInput";
 
 const AuthForm = ({title, handleClick}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {authError, handleAuthError} = useUserContext();
+  useEffect(() => {
+    handleAuthError();
+  }, []);
   return (
     <Wrapper>
       <div className="form-title">{title}</div>
       <form className="form">
+        {authError.errorCode && (
+          <div
+            style={{
+              color: "red",
+              padding: "0px 0px 20px 10px",
+              fontSize: "1rem",
+            }}
+          >
+            {authError.errorCode?.split("/")[1]}
+          </div>
+        )}
         <FormInput label="Email" value={email} setValue={setEmail} />
         <FormInput
           label="Password"
@@ -17,7 +33,12 @@ const AuthForm = ({title, handleClick}) => {
           value={password}
           setValue={setPassword}
         />
-        <button disabled={!email || !password} className="btn" type="button">
+        <button
+          disabled={!email || !password}
+          className="btn"
+          type="button"
+          onClick={() => handleClick(email, password)}
+        >
           {title}
         </button>
       </form>

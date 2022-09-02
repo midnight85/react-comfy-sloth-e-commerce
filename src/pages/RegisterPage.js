@@ -1,10 +1,32 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import AuthForm from "../components/AuthForm";
+import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+import {useUserContext} from "../context/user_context";
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  const {setUserData, setUserToLocalStorage, handleAuthError} =
+    useUserContext();
+
+  const registerUser = (email, password) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({user}) => {
+        handleAuthError();
+        setUserData(user.email, user.uid, user.accessToken);
+        setUserToLocalStorage(user.email, user.uid, user.accessToken);
+        navigate("/");
+      })
+
+      .catch((error) => {
+        console.log(error);
+        handleAuthError(error.code, error.message);
+      });
+  };
   return (
     <Wrapper className="section section-center">
-      <AuthForm title="Sign up" />
+      <AuthForm title="Sign up" handleClick={registerUser} />
     </Wrapper>
   );
 };
