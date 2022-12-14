@@ -1,1 +1,1 @@
-Project in Action - https://heartfelt-sprite-9a42e6.netlify.app/
+Project in Action - https://react-course-comfy-sloth-app.netlify.app/
