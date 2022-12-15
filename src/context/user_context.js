@@ -4,10 +4,13 @@ const UserContext = React.createContext();
 
 export const UserProvider = ({children}) => {
   const setUserToLocalStorage = (email, id, token) => {
-    localStorage.setItem("user", JSON.stringify({email, id, token}));
+    localStorage.setItem(
+      "comfy-sloth_user",
+      JSON.stringify({email, id, token})
+    );
   };
   const checkUserInLocalStorage = () => {
-    const tempUser = JSON.parse(localStorage.getItem("user"));
+    const tempUser = JSON.parse(localStorage.getItem("comfy-sloth_user"));
     if (tempUser) {
       const {email, id, token} = tempUser;
       setUserData(email, id, token);
@@ -32,7 +35,7 @@ export const UserProvider = ({children}) => {
   };
   const removeUser = () => {
     setUser({email: null, id: null, token: null});
-    localStorage.removeItem("user");
+    localStorage.removeItem("comfy-sloth_user");
   };
   const handleAuthError = (errorCode = null, errorMessage = null) =>
     setAuthError({errorCode, errorMessage});
